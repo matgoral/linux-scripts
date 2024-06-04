@@ -25,7 +25,7 @@ def log_if_slow(host, response_time, log_file, threshold=30):
 
 def main():
     hosts = ["8.8.8.8", "1.1.1.1"]
-    threshold = 1
+    threshold = 30
     start_time = datetime.now()
     log_filename = start_time.strftime("ping_log_%Y-%m-%d.txt")
 
