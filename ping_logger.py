@@ -16,7 +16,7 @@ def ping(host):
         return None
 
 # Function to log the timestamp and host if the response time is greater than the threshold
-def log_if_slow(host, response_time, threshold=30):
+def log_if_slow(host, response_time, log_file, threshold=30):
     if response_time > threshold:
         with open("log_file", "a") as log_file:
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
