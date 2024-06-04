@@ -18,7 +18,7 @@ def ping(host):
 # Function to log the timestamp and host if the response time is greater than the threshold
 def log_if_slow(host, response_time, threshold=30):
     if response_time > threshold:
-        with open("ping_log.log", "a") as log_file:
+        with open("log_file", "a") as log_file:
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             log_file.write(f"{timestamp} - {host} - {response_time}ms\n")
         print(f"{timestamp} - ping {host} - {response_time}ms")
@@ -26,12 +26,14 @@ def log_if_slow(host, response_time, threshold=30):
 def main():
     hosts = ["8.8.8.8", "1.1.1.1"]
     threshold = 1
+    start_time = datetime.now()
+    log_filename = start_time.strftime("ping_log_%Y-%m-%d.txt")
 
     while True:
         for host in hosts:
             response_time = ping(host)
             if response_time is not None:
-                log_if_slow(host, response_time, threshold)
+                log_if_slow(host, response_time, log_filename, threshold)
         time.sleep(1)
 
 if __name__ == "__main__":
